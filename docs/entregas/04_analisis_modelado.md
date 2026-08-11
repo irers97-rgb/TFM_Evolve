@@ -18,7 +18,7 @@ Los hospitales del SNS gestionan de forma mayoritariamente reactiva la planifica
 | M2 - Derivación | Dirección médica de área sanitaria / planificación de red | Priorizar en qué patologías/CCAA reforzar capacidad especializada, de cara a la temporada | Diseño conceptual, ver Anexo |
 | M3 - Riesgo de reingreso | Dirección médica / calidad asistencial | Priorizar en qué segmentos reforzar protocolos de alta o seguimiento post-alta | Diseño conceptual, ver Anexo |
 
-El Módulo 1 no opera en tiempo real: la fuente (EMH) se publica con retraso y a granularidad agregada. Su valor está en la **planificación estructural a semanas vista**, no en la alerta operativa del día a día — por eso el horizonte se mantiene en 4-8 semanas y en ningún momento se plantea un horizonte de 24-72 horas, que sí exigiría un dato con actualización diaria u horaria que la EMH no ofrece.
+El Módulo 1 no opera en tiempo real: la fuente (EMH) se publica con retraso y a granularidad agregada. Su valor está en la **planificación estructural a semanas vista**, no en la alerta operativa del día a día - por eso el horizonte se mantiene en 4-8 semanas y en ningún momento se plantea un horizonte de 24-72 horas, que sí exigiría un dato con actualización diaria u horaria que la EMH no ofrece.
 
 ### Qué debe producir el proyecto para considerarse útil
 
@@ -68,7 +68,7 @@ El planteamiento de modelo para M2 y M3 (regresión sobre tasas agregadas, con e
 | Variable / periodo | Motivo de exclusión |
 |---|---|
 | Años 2020-2021 | Ruptura estructural pandémica |
-| Ocupación diaria por centro | No disponible en fuentes públicas (ESCRI es foto anual, no serie) — por eso el horizonte se queda en semanas, nunca en 24-72 horas |
+| Ocupación diaria por centro | No disponible en fuentes públicas (ESCRI es foto anual, no serie) - por eso el horizonte se queda en semanas, nunca en 24-72 horas |
 | Desagregación por servicio | Se incluye solo si la Entrega 3 confirma que la fuente la soporta realmente; si no, el modelo opera a nivel CCAA |
 
 ---
