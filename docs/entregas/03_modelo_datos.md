@@ -23,9 +23,9 @@ Por eso el criterio de selección del MVP es: **el módulo cuya fuente real ya e
 
 | Módulo | Qué resolvería | Granularidad | Fuente principal | Estado en este entregable |
 |---|---|---|---|---|
-| **1. Predicción de demanda asistencial** | Proyección de ingresos urgentes/programados, 4-8 semanas vista, por CCAA (y por servicio si la validación de la sección 2 lo confirma) | Semana × (servicio) × CCAA | EMH, ESCRI | **MVP — en desarrollo, datos reales** |
-| **2. Índice de priorización de derivación** | Identificar qué combinaciones patología × CCAA concentran mayor presión estructural de derivación | Patología (CIE-10 2 dígitos) × CCAA × año | EMH, ESCRI, GRD | **Diseño conceptual — no implementado, pendiente de validar fuente real** |
-| **3. Índice de riesgo de reingreso al alta** | Estratificar qué combinaciones patología × edad × CCAA concentran mayor riesgo de reingreso a 30 días | Patología × grupo de edad × CCAA × año | EMH, GRD, iCMBD | **Diseño conceptual — no implementado, pendiente de validar fuente real** |
+| **1. Predicción de demanda asistencial** | Proyección de ingresos urgentes/programados, 4-8 semanas vista, por CCAA (y por servicio si la validación de la sección 2 lo confirma) | Semana × (servicio) × CCAA | EMH, ESCRI | **MVP - en desarrollo, datos reales** |
+| **2. Índice de priorización de derivación** | Identificar qué combinaciones patología × CCAA concentran mayor presión estructural de derivación | Patología (CIE-10 2 dígitos) × CCAA × año | EMH, ESCRI, GRD | **Diseño conceptual - no implementado, pendiente de validar fuente real** |
+| **3. Índice de riesgo de reingreso al alta** | Estratificar qué combinaciones patología × edad × CCAA concentran mayor riesgo de reingreso a 30 días | Patología × grupo de edad × CCAA × año | EMH, GRD, iCMBD | **Diseño conceptual - no implementado, pendiente de validar fuente real** |
 
 El diseño de los Módulos 2 y 3 se conserva íntegro en la sección 10 (antes secciones 5.2/5.3) porque el trabajo de análisis de viabilidad ya hecho tiene valor y puede activarse si la validación de fuentes lo respalda - pero no forma parte de lo que este TFM promete entregar como sistema funcional.
 
