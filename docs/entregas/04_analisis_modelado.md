@@ -111,7 +111,7 @@ Si la EMH soporta realmente la desagregación por servicio; de ello depende si M
 
 ---
 
-## Anexo — Diseño conceptual de Módulos 2 y 3 (no implementado en este entregable)
+## Anexo - Diseño conceptual de Módulos 2 y 3 (no implementado en este entregable)
 
 > Se conserva el trabajo de diseño ya hecho sobre M2 y M3, incorporando las correcciones metodológicas señaladas en la revisión, para que quede documentado si en el futuro se activan (ver condiciones en la Entrega 3, sección 10.5). **Nada de esta sección se implementa, entrena o valida en el MVP actual.**
 
