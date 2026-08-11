@@ -8,7 +8,7 @@
 
 ### Problema que resuelve
 
-Los reingresos evitables, las altas prematuras y las derivaciones reactivas entre centros son problemas costosos y estructurales del sistema sanitario español, agravados por la presión asistencial no anticipada. El proyecto completo (visión a largo plazo) aspira a abordar las tres caras del problema —cuánta demanda va a llegar, a qué centro debería derivarse un paciente cuando la red está saturada, y qué patologías/perfiles concentran el riesgo de reingreso— con evidencia real y agregada. **El TFM, sin embargo, no promete las tres piezas a la vez**: entrega una de ellas completa y validada sobre datos reales, y documenta el resto como diseño conceptual pendiente de validación de fuente.
+Los reingresos evitables, las altas prematuras y las derivaciones reactivas entre centros son problemas costosos y estructurales del sistema sanitario español, agravados por la presión asistencial no anticipada. El proyecto completo (visión a largo plazo) aspira a abordar las tres caras del problema -cuánta demanda va a llegar, a qué centro debería derivarse un paciente cuando la red está saturada, y qué patologías/perfiles concentran el riesgo de reingreso- con evidencia real y agregada. **El TFM, sin embargo, no promete las tres piezas a la vez**: entrega una de ellas completa y validada sobre datos reales, y documenta el resto como diseño conceptual pendiente de validación de fuente.
 
 ### Por qué el MVP se centra en un único módulo
 
