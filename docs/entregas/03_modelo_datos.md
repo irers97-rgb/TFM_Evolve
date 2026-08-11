@@ -1,6 +1,6 @@
 # Entrega 3 - Diseño del modelo de datos y capa gold del proyecto
 
-> **Nota de revisión (respuesta al feedback recibido):** el feedback señala que varias tablas gold exigían granularidades que las fuentes públicas reales no garantizan (demanda semanal por servicio, episodios individuales, biomarcadores, reingreso a 30 días), que rellenar esos huecos con datos sintéticos permite demostrar el pipeline pero no sostener conclusiones clínicas ni un sistema real de apoyo a la decisión, y que los tres módulos seguían manteniendo un alcance demasiado alto. En consecuencia, este documento reduce el entregable a **un único MVP construido íntegramente sobre datos reales** (Módulo 1 — predicción de demanda), incorpora una fase explícita de **validación de campos y frecuencias reales en EMH y ESCRI** antes de cerrar el diseño de la capa gold, y reclasifica los Módulos 2 y 3 como **diseño conceptual no implementado**, condicionado a que esa validación confirme que existe una fuente real (no sintética) capaz de sostenerlos. La arquitectura de datos (capas, formato, principios de limpieza) se mantiene porque no es lo que estaba en cuestión; lo que se ajusta es la promesa de producto a la evidencia real disponible.
+> **Nota de revisión (respuesta al feedback recibido):** el feedback señala que varias tablas gold exigían granularidades que las fuentes públicas reales no garantizan (demanda semanal por servicio, episodios individuales, biomarcadores, reingreso a 30 días), que rellenar esos huecos con datos sintéticos permite demostrar el pipeline pero no sostener conclusiones clínicas ni un sistema real de apoyo a la decisión, y que los tres módulos seguían manteniendo un alcance demasiado alto. En consecuencia, este documento reduce el entregable a **un único MVP construido íntegramente sobre datos reales** (Módulo 1 - predicción de demanda), incorpora una fase explícita de **validación de campos y frecuencias reales en EMH y ESCRI** antes de cerrar el diseño de la capa gold, y reclasifica los Módulos 2 y 3 como **diseño conceptual no implementado**, condicionado a que esa validación confirme que existe una fuente real (no sintética) capaz de sostenerlos. La arquitectura de datos (capas, formato, principios de limpieza) se mantiene porque no es lo que estaba en cuestión; lo que se ajusta es la promesa de producto a la evidencia real disponible.
 
 ---
 
@@ -14,7 +14,7 @@ Los reingresos evitables, las altas prematuras y las derivaciones reactivas entr
 
 Elegir un único módulo responde directamente a dos problemas detectados en la revisión:
 
-1. **Riesgo de granularidad no garantizada.** Prometer tres módulos obliga a asumir, sin haberlo comprobado, que EMH ofrece fecha de alta reconstruible a nivel semanal *y* desagregación por servicio, que ESCRI aporta contexto de camas útil, y que iCMBD desagrega el reingreso por patología y CCAA simultáneamente. Si alguno de esos supuestos no se confirma, la salida honesta es sintetizar el dato — y un dato sintético no puede sostener una conclusión clínica ni un sistema real de apoyo a la decisión, solo una demostración de pipeline.
+1. **Riesgo de granularidad no garantizada.** Prometer tres módulos obliga a asumir, sin haberlo comprobado, que EMH ofrece fecha de alta reconstruible a nivel semanal *y* desagregación por servicio, que ESCRI aporta contexto de camas útil, y que iCMBD desagrega el reingreso por patología y CCAA simultáneamente. Si alguno de esos supuestos no se confirma, la salida honesta es sintetizar el dato - y un dato sintético no puede sostener una conclusión clínica ni un sistema real de apoyo a la decisión, solo una demostración de pipeline.
 2. **Alcance excesivo para el tiempo y los datos disponibles.** Tres módulos, cada uno con su propia validación de fuente, EDA, modelo y panel, diluyen el esfuerzo y aumentan la probabilidad de que ninguno quede completamente validado.
 
 Por eso el criterio de selección del MVP es: **el módulo cuya fuente real ya está confirmada a la granularidad necesaria, sin depender de trámites de acceso especiales ni de indicadores cuya desagregación exacta está aún por confirmar.**
@@ -27,14 +27,14 @@ Por eso el criterio de selección del MVP es: **el módulo cuya fuente real ya e
 | **2. Índice de priorización de derivación** | Identificar qué combinaciones patología × CCAA concentran mayor presión estructural de derivación | Patología (CIE-10 2 dígitos) × CCAA × año | EMH, ESCRI, GRD | **Diseño conceptual — no implementado, pendiente de validar fuente real** |
 | **3. Índice de riesgo de reingreso al alta** | Estratificar qué combinaciones patología × edad × CCAA concentran mayor riesgo de reingreso a 30 días | Patología × grupo de edad × CCAA × año | EMH, GRD, iCMBD | **Diseño conceptual — no implementado, pendiente de validar fuente real** |
 
-El diseño de los Módulos 2 y 3 se conserva íntegro en la sección 10 (antes secciones 5.2/5.3) porque el trabajo de análisis de viabilidad ya hecho tiene valor y puede activarse si la validación de fuentes lo respalda — pero no forma parte de lo que este TFM promete entregar como sistema funcional.
+El diseño de los Módulos 2 y 3 se conserva íntegro en la sección 10 (antes secciones 5.2/5.3) porque el trabajo de análisis de viabilidad ya hecho tiene valor y puede activarse si la validación de fuentes lo respalda - pero no forma parte de lo que este TFM promete entregar como sistema funcional.
 
 ### Fuentes de datos y tipo de información aportada (MVP)
 
 | Fuente | Tipo de información | Uso en el proyecto |
 |---|---|---|
-| Encuesta de Morbilidad Hospitalaria (EMH) – INE, serie 2014-2023 | Altas con fecha real de alta, diagnóstico CIE-10, modalidad de ingreso, edad, sexo, CCAA | Fuente principal del MVP: reconstrucción de la serie semanal de ingresos |
-| Estadística de Centros de Atención Especializada (antigua ESCRI) – Ministerio de Sanidad, serie 2014-2023 | Foto anual de camas instaladas/en funcionamiento, dotación tecnológica y personal por centro | Contexto estructural anual estático del MVP (capacidad de la red) |
+| Encuesta de Morbilidad Hospitalaria (EMH) - INE, serie 2014-2023 | Altas con fecha real de alta, diagnóstico CIE-10, modalidad de ingreso, edad, sexo, CCAA | Fuente principal del MVP: reconstrucción de la serie semanal de ingresos |
+| Estadística de Centros de Atención Especializada (antigua ESCRI) - Ministerio de Sanidad, serie 2014-2023 | Foto anual de camas instaladas/en funcionamiento, dotación tecnológica y personal por centro | Contexto estructural anual estático del MVP (capacidad de la red) |
 
 GRD e iCMBD quedan documentadas como fuentes potenciales para una futura extensión (sección 10), pero no se usan en el MVP actual.
 
@@ -42,7 +42,7 @@ GRD e iCMBD quedan documentadas como fuentes potenciales para una futura extensi
 
 ## 2. Validación de las fuentes: qué granularidad soportan realmente
 
-Esta sección era, en la versión anterior, una descripción de la granularidad esperada. El feedback pide algo más estricto: **confirmar antes de avanzar, no asumir**, exactamente qué campos y frecuencias existen en EMH y ESCRI. Se separa en (2.1) el checklist de validación pendiente — la tarea prioritaria solicitada — y (2.2) lo ya documentado sobre periodicidad de publicación, que sigue siendo cierto pero no sustituye a la validación de campo.
+Esta sección era, en la versión anterior, una descripción de la granularidad esperada. El feedback pide algo más estricto: **confirmar antes de avanzar, no asumir**, exactamente qué campos y frecuencias existen en EMH y ESCRI. Se separa en (2.1) el checklist de validación pendiente — la tarea prioritaria solicitada - y (2.2) lo ya documentado sobre periodicidad de publicación, que sigue siendo cierto pero no sustituye a la validación de campo.
 
 ### 2.1 Checklist de validación pendiente (acción prioritaria antes de cerrar el diseño gold)
 
@@ -86,7 +86,7 @@ data/
 |---|---|---|
 | `raw/` | Microdatos/agregados EMH por año, ficheros anuales ESCRI | Una entrega anual por fuente |
 | `processed/` | Ficheros Parquet limpios: tipos corregidos, nulos tratados, duplicados eliminados, `snake_case`, fechas ISO 8601 | EMH agregado a semana × CCAA (× servicio si se confirma en 2.1) |
-| `gold/` | `gold_demanda_asistencial.csv` — único dataset del MVP | Ver sección 5 |
+| `gold/` | `gold_demanda_asistencial.csv` - único dataset del MVP | Ver sección 5 |
 
 El diseño conceptual de Módulos 2 y 3 (sección 10) no genera ficheros en `gold/` mientras no se active; si en el futuro se valida su fuente, se añadirán como datasets adicionales sin modificar esta estructura.
 
@@ -109,13 +109,13 @@ El diseño conceptual de Módulos 2 y 3 (sección 10) no genera ficheros en `gol
 
 | Campo | Descripción | Tipo | Fuente | Obligatorio | Observaciones |
 |---|---|---|---|---|---|
-| `anio` | Año del registro | int | EMH | Sí | — |
-| `semana_epidemiologica` | Semana ISO del año | int | EMH | Sí | — |
-| `ccaa_codigo` | Código INE de CCAA | str | EMH | Sí | — |
+| `anio` | Año del registro | int | EMH | Sí | - |
+| `semana_epidemiologica` | Semana ISO del año | int | EMH | Sí | - |
+| `ccaa_codigo` | Código INE de CCAA | str | EMH | Sí | - |
 | `servicio` | Servicio hospitalario | str | EMH | Condicionado | Solo si el checklist 2.1 confirma la desagregación real |
 | `ingresos_urgentes` | Nº de ingresos urgentes de la semana | int | EMH | Sí | Variable objetivo |
-| `ingresos_programados` | Nº de ingresos programados de la semana | int | EMH | Sí | — |
-| `camas_totales_ccaa` | Capacidad estructural de la CCAA (contexto anual, no ocupación en tiempo real) | int | ESCRI | Sí | — |
+| `ingresos_programados` | Nº de ingresos programados de la semana | int | EMH | Sí | - |
+| `camas_totales_ccaa` | Capacidad estructural de la CCAA (contexto anual, no ocupación en tiempo real) | int | ESCRI | Sí | - |
 
 El diccionario de campos de los Módulos 2 y 3 se mantiene en la sección 10, con la misma etiqueta de "diseño conceptual, no implementado".
 
@@ -167,7 +167,7 @@ Priorizar los agregados públicos ya disponibles (si sostienen la granularidad n
 
 ## 10. Anexo — Diseño conceptual de Módulos 2 y 3 (no implementado en este entregable)
 
-> Todo lo que sigue es el trabajo de diseño ya realizado sobre los Módulos 2 (presión de derivación) y 3 (riesgo de reingreso). Se conserva porque tiene valor de análisis, pero **no forma parte del MVP entregado**: no se construyen sus datasets gold, no se entrenan sus modelos y no aparecen en el dashboard de esta entrega. Solo se activarían si, en una futura fase, se confirma que GRD e iCMBD ofrecen la granularidad real necesaria — nunca completando esa granularidad con datos sintéticos.
+> Todo lo que sigue es el trabajo de diseño ya realizado sobre los Módulos 2 (presión de derivación) y 3 (riesgo de reingreso). Se conserva porque tiene valor de análisis, pero **no forma parte del MVP entregado**: no se construyen sus datasets gold, no se entrenan sus modelos y no aparecen en el dashboard de esta entrega. Solo se activarían si, en una futura fase, se confirma que GRD e iCMBD ofrecen la granularidad real necesaria - nunca completando esa granularidad con datos sintéticos.
 
 ### 10.1 Planteamiento
 
@@ -182,8 +182,8 @@ Ninguno de los dos produciría una recomendación para un paciente concreto en u
 
 | Fuente | Tipo de información | Uso previsto |
 |---|---|---|
-| Grupos Relacionados por el Diagnóstico (GRD) – SNS | Estancia media y coste de referencia por diagnóstico | Variable de desviación de estancia (severidad/complejidad) |
-| iCMBD (indicadores y ejes de análisis del CMBD) – Ministerio de Sanidad | Indicadores oficiales agregados: tasa de reingresos, mortalidad, estancia media, por CCAA/hospital/diagnóstico | Variable objetivo real de M3, si su desagregación llega a patología × CCAA |
+| Grupos Relacionados por el Diagnóstico (GRD) - SNS | Estancia media y coste de referencia por diagnóstico | Variable de desviación de estancia (severidad/complejidad) |
+| iCMBD (indicadores y ejes de análisis del CMBD) - Ministerio de Sanidad | Indicadores oficiales agregados: tasa de reingresos, mortalidad, estancia media, por CCAA/hospital/diagnóstico | Variable objetivo real de M3, si su desagregación llega a patología × CCAA |
 
 **Punto de atención abierto, no resuelto:** falta confirmar si iCMBD desagrega la tasa de reingreso a nivel de patología × CCAA simultáneamente, o solo por uno de los dos ejes, y si el acceso es de consulta interactiva o de descarga masiva. Mientras esto no se confirme, M3 no pasa de diseño conceptual.
 
@@ -215,7 +215,7 @@ Ninguno de los dos produciría una recomendación para un paciente concreto en u
 | `patologia_cie10` | str | Grupo diagnóstico | EMH |
 | `grupo_edad` | str | Franja decenal | EMH |
 | `altas_totales` | int | Nº de altas del segmento | EMH |
-| `tasa_reingreso_30d` | float | Variable objetivo: tasa oficial de reingreso a 30 días — **debe proceder de un indicador ya agregado y real (iCMBD); si esa granularidad no se confirma, el módulo no se sostiene con datos sintéticos** | iCMBD |
+| `tasa_reingreso_30d` | float | Variable objetivo: tasa oficial de reingreso a 30 días - **debe proceder de un indicador ya agregado y real (iCMBD); si esa granularidad no se confirma, el módulo no se sostiene con datos sintéticos** | iCMBD |
 | `estancia_media_dias` | float | Estancia media real del segmento | EMH |
 | `desviacion_estancia` | float | Estancia real vs. GRD esperada | GRD (derivado) |
 | `mortalidad_intrahosp_pct` | float | % de altas por fallecimiento del segmento | EMH |
