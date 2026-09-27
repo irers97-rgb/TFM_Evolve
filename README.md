@@ -5,7 +5,7 @@ Autora: Irene Rodríguez Sánchez · Curso 2025-2026
 
 Sistema de apoyo a la planificación hospitalaria basado en datos reales del Sistema Nacional de Salud (SNS): un índice estructural de presión asistencial por patología y comunidad autónoma, construido y validado sobre datos públicos abiertos del INE y el Ministerio de Sanidad.
 
-**Demo interactiva:** file:///C:/Users/irers/OneDrive/Desktop/Evolve/TFM/tfm_demo_dashboard.html
+**Demo interactiva:** tfm_demo_dashboard.html
 
 ---
 
